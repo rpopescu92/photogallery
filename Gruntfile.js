@@ -1,21 +1,41 @@
-module.exports = function (grunt) {
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
-    grunt.loadNpmTasks('grunt-serve');
-    grunt.loadNpmTasks('grunt-html2js');
-    grunt.loadNpmTasks('grunt-http-server');
+module.exports = function(grunt) {
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-connect-proxy');
 
     grunt.initConfig({
-        serve: {
-            options: {
-                port: 9000,
-                'client.js': {
-                    tasks: ['html2js', 'concat'],
-                    output: 'index.html'
+        watch: {
+            all: {
+                files: ['Gruntfile.js']
+            }
+        },
+        connect: {
+            'static': {
+                options: {
+                    hostname: 'localhost',
+                    port: 8001
                 }
+            },
+            server: {
+                options: {
+                    hostname: 'localhost',
+                    port: 8000,
+                    middleware: function(connect) {
+                        return [proxySnippet];
+                    }
+                },
+                proxies: [
+                    {
+                        context: '/services',
+                        host: 'api.flickr.com'
+                    }
+                ]
             }
         }
     });
 
-    grunt.registerTask('default', ['serve', 'concat', 'html2js']);
 
+    grunt.registerTask('server', ['connect:static', 'configureProxies:server', 'connect:server', 'watch']);
 };
