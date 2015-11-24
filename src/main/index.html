@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../main/bower_components/angular/angular.js"></script>
+</head>
+<body ng-app="photogallery">
+<div ng-cloak>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Photo Gallery</h2>
+                </div>
+                <div class="main" ui-view="content"></div>
+            </div>
+        </div>
+        </div>
+</div>
+
+<!--bower:js-->
+<script src="../main/bower_components/jquery/dist/jquery.js"></script>
+<script src="../main/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../main/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<!--endbower-->
+<script src="app.js"></script>
+<script src="app.module.config.js"></script>
+<script src="../main/gallery/GalleryController.js"></script>
+<script src="../main/gallery/GalleryService.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../main/bower_components/bootstrap/dist/css/bootstrap.css">
+
+</body>
+</html>
