@@ -1,41 +1,39 @@
-var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+module.exports = function (grunt) {
 
-module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-connect-proxy');
+    var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
     grunt.initConfig({
-        watch: {
-            all: {
-                files: ['Gruntfile.js']
-            }
-        },
+
+        // grunt-contrib-connect will serve the files of the project
+        // on specified port and hostname
         connect: {
-            'static': {
-                options: {
-                    hostname: 'localhost',
-                    port: 8001
-                }
+            options: {
+                port: 8080,
+                livereload: 35729,
+                hostname: "localhost",
+                base: "."
             },
-            server: {
-                options: {
-                    hostname: 'localhost',
-                    port: 8000,
-                    middleware: function(connect) {
-                        return [proxySnippet];
-                    }
-                },
-                proxies: [
-                    {
-                        context: '/services',
-                        host: 'api.flickr.com'
-                    }
-                ]
-            }
+            proxies: {
+                context: "/services",  // When the url contains this...
+                host: "api.flickr.com", // Proxy to this host
+                changeOrigin: true
+            },
+                options:{
+                    port: 9000,
+                    hostname: "0.0.0.0",
+                    // Prevents Grunt to close just after the task (starting the server) completes
+                    // This will be removed later as `watch` will take care of that
+                    keepalive: true
+                }
         }
     });
 
 
-    grunt.registerTask('server', ['connect:static', 'configureProxies:server', 'connect:server', 'watch']);
+    grunt.loadNpmTasks('grunt-connect-proxy');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
+    // Creates the `server` task
+    grunt.registerTask('server',[
+        'connect'
+    ]);
 };

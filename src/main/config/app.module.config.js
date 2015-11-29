@@ -10,7 +10,7 @@
                     url: '/gallery',
                     views: {
                         'content@': {
-                            templateUrl: '../main/gallery/gallery.html',
+                            templateUrl: '../gallery/gallery.html',
                             controller: 'GalleryController'
 
                         }
