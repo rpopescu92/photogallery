@@ -5,7 +5,7 @@
 
     var GalleryController = function($scope, GalleryService){
         $scope.photos = [];
-        $scope.photos = GalleryService.getPhotos()
+        GalleryService.getPhotos()
             .then(function (data) {
                 data = data.replace(/\t/g, ' ');        //replace all tabs with space
                 data = data.replace(/'/g, '"');           //replace all '' with ""
