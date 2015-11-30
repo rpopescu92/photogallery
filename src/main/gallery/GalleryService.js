@@ -5,10 +5,12 @@
 
     app.factory('GalleryService', function ($http) {
         var getPhotos = function(){
-            var url = "https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json";
+            ///resh/controller
+            var url = "/resh/controller";
             return $http.get(url)
                 .then(function (data) {
-                    return data.data;
+                    //test.slice(test.indexOf('{'), test.length-1)
+                    return data.data.slice(data.data.indexOf('{'), data.data.length-1); // the response is not a json
                 }, function (error) {
                     return error;
                 });

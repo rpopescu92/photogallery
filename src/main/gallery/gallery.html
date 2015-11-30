@@ -1,3 +1,5 @@
-<p>
-    {{$scope.photos}}
-</p>
+<div class="row">
+    <div ng-repeat="item in photos" class="col-xs-6">
+        <img src="{{item.media.m}}">{{item.title}}</img>
+    </div>
+</div>

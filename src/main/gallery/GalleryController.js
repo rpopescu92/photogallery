@@ -7,7 +7,10 @@
         $scope.photos = [];
         $scope.photos = GalleryService.getPhotos()
             .then(function (data) {
-                $scope.photos=data;
+                data = data.replace(/\t/g, ' ');        //replace all tabs with space
+                data = data.replace(/'/g, '"');           //replace all '' with ""
+                var parsedData = JSON.parse(data);
+                $scope.photos = parsedData.items;
             });
 
     };
