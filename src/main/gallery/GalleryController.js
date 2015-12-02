@@ -10,6 +10,7 @@
                 data = data.replace(/\t/g, ' ');        //replace all tabs with space
                 data = data.replace(/'/g, '"');           //replace all '' with ""
                 var parsedData = JSON.parse(data);
+                console.log(parsedData);
                 $scope.photos = parsedData.items;
             });
 

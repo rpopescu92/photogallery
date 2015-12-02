@@ -5,9 +5,16 @@
 
     app.factory('GalleryService', function ($http) {
         var getPhotos = function(){
-            ///resh/controller
-            var url = "/resh/controller";
-            return $http.get(url)
+            var request = {
+                method: 'GET',
+                url: '/resh/controller',
+                headers: {
+                    'hostname':'api.flickr.com',
+                    'port':'null',
+                    'path':'/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json'
+                }
+            };
+            return $http(request)
                 .then(function (data) {
                     //test.slice(test.indexOf('{'), test.length-1)
                     return data.data.slice(data.data.indexOf('{'), data.data.length-1); // the response is not a json

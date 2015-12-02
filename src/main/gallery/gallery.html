@@ -1,5 +1,16 @@
-<div class="row" ng-cloak>
-    <div ng-repeat="item in photos" class="col-md-6">
-        <img  src="{{item.media.m}}">{{item.title}}</img>
+<div class="row">
+    <div class="col-md-4 portfolio-item" ng-repeat="item in photos">
+        <a href="#">
+            <img class="img-responsive" src="{{item.media.m}}" alt="" style="height: 250px;">
+        </a>
+        <h3>
+            <a href="#">Author:{{item.author}}</a>
+        </h3>
+        <p>{{item.title}}</p>
     </div>
+</div>
+
+
+<hr>
+
 </div>
