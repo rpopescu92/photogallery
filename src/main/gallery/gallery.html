@@ -1,16 +1,28 @@
 <div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search tag" ng-model="searchWord">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button style="color: white;
+    background-color: black;
+    border-color: #ccc;" type="submit" class="btn btn-default" ng-click="loadPhotos(searchWord)">Search</button>
+    </div>
+    <div class="col-md-12">
+        <br>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-4 portfolio-item" ng-repeat="item in photos">
         <a href="#">
             <img class="img-responsive" src="{{item.media.m}}" alt="" style="height: 250px;">
         </a>
+
         <h3>
             <a href="#">Author:{{item.author}}</a>
         </h3>
+
         <p>{{item.title}}</p>
     </div>
-</div>
-
-
-<hr>
-
 </div>
