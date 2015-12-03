@@ -12,7 +12,7 @@
                 var parsedData = JSON.parse(data);
                 $scope.photos = parsedData.items;
             }).catch(function (error) {
-                console.log('Error with status ' + error.status);
+                console.log('Error with status: ' + error.status);
             });
 
         $scope.loadPhotos = function (searchWord) {
