@@ -16,10 +16,11 @@
             };
             return $http(request)
                 .then(function (data) {
+                    if(data.status == 500) {
+                        return {};
+                    }
                     //test.slice(test.indexOf('{'), test.length-1)
                     return data.data.slice(data.data.indexOf('{'), data.data.length-1); // the response is not a json
-                }, function (error) {
-                    return error;
                 });
         };
         return {
@@ -27,7 +28,5 @@
         }
 
     });
-
-
 
 })();
